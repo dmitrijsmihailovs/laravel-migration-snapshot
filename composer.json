@@ -1,25 +1,23 @@
 {
-    "name": "orisintel/laravel-migration-snapshot",
+    "name": "always-open/laravel-migration-snapshot",
     "description": "Dump and load snapshots of the schema produced by individual migrations.",
     "keywords": [
-        "orisintel",
+        "always-open",
         "laravel-migration-snapshot",
         "laravel",
         "migration"
     ],
-    "homepage": "https://github.com/orisintel/laravel-migration-snapshot",
+    "homepage": "https://github.com/always-open/laravel-migration-snapshot",
     "license": "MIT",
     "authors": [
-    {
-        "name": "Paul R. Rogers",
-        "role": "Developer"
-    },
-    {
-        "name": "ORIS Intelligence",
-        "email": "info@orisintel.com",
-        "homepage": "https://orisintel.com",
-        "role": "Organization"
-    }
+        {
+            "name": "Paul R. Rogers",
+            "role": "Developer"
+        },
+        {
+            "name": "Always Open",
+            "role": "Organization"
+        }
     ],
     "require": {
         "php": "^7.3",
