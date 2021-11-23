@@ -1,6 +1,6 @@
 <?php
 
-namespace OrisIntel\MigrationSnapshot\Commands;
+namespace AlwaysOpen\MigrationSnapshot\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

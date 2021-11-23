@@ -24,7 +24,7 @@ path where Artisan will be run.
 
 Put `migration-snapshot.php` into `config` with:
 ``` bash
-php artisan vendor:publish --provider="\OrisIntel\MigrationSnapshot\ServiceProvider"
+php artisan vendor:publish --provider="\AlwaysOpen\MigrationSnapshot\ServiceProvider"
 ```
 
 ## Usage

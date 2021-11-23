@@ -1,9 +1,9 @@
 <?php
 
 
-namespace OrisIntel\MigrationSnapshot\Tests\Postgresql;
+namespace AlwaysOpen\MigrationSnapshot\Tests\Postgresql;
 
-use OrisIntel\MigrationSnapshot\Tests\TestCase;
+use AlwaysOpen\MigrationSnapshot\Tests\TestCase;
 
 class MigrateLoadTest extends TestCase
 {

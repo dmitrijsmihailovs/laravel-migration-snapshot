@@ -1,10 +1,10 @@
 <?php
 
 
-namespace OrisIntel\MigrationSnapshot\Tests;
+namespace AlwaysOpen\MigrationSnapshot\Tests;
 
 
-use OrisIntel\MigrationSnapshot\Commands\MigrateDumpCommand;
+use AlwaysOpen\MigrationSnapshot\Commands\MigrateDumpCommand;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -38,7 +38,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function getPackageProviders($app)
     {
-        return ['\OrisIntel\MigrationSnapshot\ServiceProvider'];
+        return ['\AlwaysOpen\MigrationSnapshot\ServiceProvider'];
     }
 
     protected function createTestTablesWithoutMigrate() : void

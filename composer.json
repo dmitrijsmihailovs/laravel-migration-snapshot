@@ -30,12 +30,12 @@
     },
     "autoload": {
         "psr-4": {
-            "OrisIntel\\MigrationSnapshot\\": "src"
+            "AlwaysOpen\\MigrationSnapshot\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "OrisIntel\\MigrationSnapshot\\Tests\\": "tests"
+            "AlwaysOpen\\MigrationSnapshot\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -48,7 +48,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "OrisIntel\\MigrationSnapshot\\ServiceProvider"
+                "AlwaysOpen\\MigrationSnapshot\\ServiceProvider"
             ]
         }
     }
