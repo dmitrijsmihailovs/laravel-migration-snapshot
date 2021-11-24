@@ -1,7 +1,7 @@
 # Laravel Migration Snapshot
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/orisintel/laravel-migration-snapshot.svg?style=flat-square)](https://packagist.org/packages/orisintel/laravel-migration-snapshot)
-[![Build Status](https://img.shields.io/travis/orisintel/laravel-migration-snapshot/master.svg?style=flat-square)](https://travis-ci.org/orisintel/laravel-migration-snapshot)
+![build](https://github.com/always-open/laravel-migration-snapshot/actions/workflows/php.yml/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/orisintel/laravel-migration-snapshot.svg?style=flat-square)](https://packagist.org/packages/orisintel/laravel-migration-snapshot)
 
 Simplify and accelerate applying many migrations at once using a flattened dump
