@@ -1,8 +1,8 @@
 # Laravel Migration Snapshot
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/orisintel/laravel-migration-snapshot.svg?style=flat-square)](https://packagist.org/packages/orisintel/laravel-migration-snapshot)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/always-open/laravel-migration-snapshot.svg?style=flat-square)](https://packagist.org/packages/always-open/laravel-migration-snapshot)
 ![build](https://github.com/always-open/laravel-migration-snapshot/actions/workflows/php.yml/badge.svg)
-[![Total Downloads](https://img.shields.io/packagist/dt/orisintel/laravel-migration-snapshot.svg?style=flat-square)](https://packagist.org/packages/orisintel/laravel-migration-snapshot)
+[![Total Downloads](https://img.shields.io/packagist/dt/always-open/laravel-migration-snapshot.svg?style=flat-square)](https://packagist.org/packages/always-open/laravel-migration-snapshot)
 
 Simplify and accelerate applying many migrations at once using a flattened dump
 of the database schema and migrations, similar in spirit to Rails' `schema.rb`.
