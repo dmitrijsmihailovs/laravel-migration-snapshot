@@ -14,7 +14,7 @@ Works with the `mysql`, `pgsql`, and `sqlite` database drivers.
 You can install the package via composer:
 
 ``` bash
-composer require --dev orisintel/laravel-migration-snapshot
+composer require --dev always-open/laravel-migration-snapshot
 ```
 
 Database command-line utilities (such as `mysqldump` and `mysql`) must be in the
@@ -24,7 +24,7 @@ path where Artisan will be run.
 
 Put `migration-snapshot.php` into `config` with:
 ``` bash
-php artisan vendor:publish --provider="\OrisIntel\MigrationSnapshot\ServiceProvider"
+php artisan vendor:publish --provider="\AlwaysOpen\MigrationSnapshot\ServiceProvider"
 ```
 
 ## Usage
@@ -61,14 +61,11 @@ composer test
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-## Security
-
-If you discover any security related issues, please email
-opensource@orisintel.com instead of using the issue tracker.
-
 ## Credits
 
 - [Paul R. Rogers](https://github.com/paulrrogers)
+- ORIS Intelligence
+- PriceSpider (NeuIntel)
 - [All Contributors](../../contributors)
 
 ## License

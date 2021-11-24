@@ -1,9 +1,9 @@
 <?php
 
-namespace OrisIntel\MigrationSnapshot;
+namespace AlwaysOpen\MigrationSnapshot;
 
-use OrisIntel\MigrationSnapshot\Commands\MigrateDumpCommand;
-use OrisIntel\MigrationSnapshot\Commands\MigrateLoadCommand;
+use AlwaysOpen\MigrationSnapshot\Commands\MigrateDumpCommand;
+use AlwaysOpen\MigrationSnapshot\Commands\MigrateLoadCommand;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {

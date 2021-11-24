@@ -1,10 +1,10 @@
 <?php
 
 
-namespace OrisIntel\MigrationSnapshot\Handlers;
+namespace AlwaysOpen\MigrationSnapshot\Handlers;
 
 use Illuminate\Console\Events\CommandFinished;
-use OrisIntel\MigrationSnapshot\Commands\MigrateDumpCommand;
+use AlwaysOpen\MigrationSnapshot\Commands\MigrateDumpCommand;
 
 class MigrateFinishedHandler
 {

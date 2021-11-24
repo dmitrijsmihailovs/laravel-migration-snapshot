@@ -1,10 +1,10 @@
 <?php
 
 
-namespace OrisIntel\MigrationSnapshot\Handlers;
+namespace AlwaysOpen\MigrationSnapshot\Handlers;
 
 use Illuminate\Console\Events\CommandStarting;
-use OrisIntel\MigrationSnapshot\Commands\MigrateDumpCommand;
+use AlwaysOpen\MigrationSnapshot\Commands\MigrateDumpCommand;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 
