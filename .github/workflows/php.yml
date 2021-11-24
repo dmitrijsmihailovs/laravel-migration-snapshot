@@ -11,6 +11,20 @@ jobs:
 
     runs-on: ubuntu-latest
 
+  services:
+    mysql:
+      image: mysql:latest
+      env:
+        MYSQL_ROOT_PASSWORD: password
+      ports:
+        - 3306:3306
+    postgres:
+      image: postgers:latest
+      env:
+        POSTGRES_PASSWORD: password
+      ports:
+        - 5432:5432
+
     steps:
     - uses: actions/checkout@v2
 
