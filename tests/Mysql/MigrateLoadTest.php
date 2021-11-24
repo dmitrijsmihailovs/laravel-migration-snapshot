@@ -1,9 +1,9 @@
 <?php
 
 
-namespace OrisIntel\MigrationSnapshot\Tests\Mysql;
+namespace AlwaysOpen\MigrationSnapshot\Tests\Mysql;
 
-use OrisIntel\MigrationSnapshot\Tests\TestCase;
+use AlwaysOpen\MigrationSnapshot\Tests\TestCase;
 
 class MigrateLoadTest extends TestCase
 {

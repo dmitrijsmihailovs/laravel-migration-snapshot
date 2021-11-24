@@ -1,7 +1,7 @@
 <?php
 
-use OrisIntel\MigrationSnapshot\Commands\MigrateDumpCommand;
-use OrisIntel\MigrationSnapshot\Tests\TestCase;
+use AlwaysOpen\MigrationSnapshot\Commands\MigrateDumpCommand;
+use AlwaysOpen\MigrationSnapshot\Tests\TestCase;
 
 class MigrateDumpTest extends TestCase
 {

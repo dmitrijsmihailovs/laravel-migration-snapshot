@@ -1,7 +1,7 @@
 <?php
 
 
-namespace OrisIntel\MigrationSnapshot\Tests\Sqlite;
+namespace AlwaysOpen\MigrationSnapshot\Tests\Sqlite;
 
 
 class MigrateLoadTest extends SqliteTestCase

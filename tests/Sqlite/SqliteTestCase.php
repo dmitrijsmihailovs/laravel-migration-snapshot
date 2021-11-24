@@ -1,9 +1,9 @@
 <?php
 
 
-namespace OrisIntel\MigrationSnapshot\Tests\Sqlite;
+namespace AlwaysOpen\MigrationSnapshot\Tests\Sqlite;
 
-use OrisIntel\MigrationSnapshot\Tests\TestCase;
+use AlwaysOpen\MigrationSnapshot\Tests\TestCase;
 
 abstract class SqliteTestCase extends TestCase
 {

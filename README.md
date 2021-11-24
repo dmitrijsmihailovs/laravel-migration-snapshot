@@ -1,8 +1,8 @@
 # Laravel Migration Snapshot
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/orisintel/laravel-migration-snapshot.svg?style=flat-square)](https://packagist.org/packages/orisintel/laravel-migration-snapshot)
-[![Build Status](https://img.shields.io/travis/orisintel/laravel-migration-snapshot/master.svg?style=flat-square)](https://travis-ci.org/orisintel/laravel-migration-snapshot)
-[![Total Downloads](https://img.shields.io/packagist/dt/orisintel/laravel-migration-snapshot.svg?style=flat-square)](https://packagist.org/packages/orisintel/laravel-migration-snapshot)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/always-open/laravel-migration-snapshot.svg?style=flat-square)](https://packagist.org/packages/always-open/laravel-migration-snapshot)
+[![Build Status](https://img.shields.io/travis/always-open/laravel-migration-snapshot/master.svg?style=flat-square)](https://travis-ci.org/always-open/laravel-migration-snapshot)
+[![Total Downloads](https://img.shields.io/packagist/dt/always-open/laravel-migration-snapshot.svg?style=flat-square)](https://packagist.org/packages/always-open/laravel-migration-snapshot)
 
 Simplify and accelerate applying many migrations at once using a flattened dump
 of the database schema and migrations, similar in spirit to Rails' `schema.rb`.
@@ -14,7 +14,7 @@ Works with the `mysql`, `pgsql`, and `sqlite` database drivers.
 You can install the package via composer:
 
 ``` bash
-composer require --dev orisintel/laravel-migration-snapshot
+composer require --dev always-open/laravel-migration-snapshot
 ```
 
 Database command-line utilities (such as `mysqldump` and `mysql`) must be in the
@@ -24,7 +24,7 @@ path where Artisan will be run.
 
 Put `migration-snapshot.php` into `config` with:
 ``` bash
-php artisan vendor:publish --provider="\OrisIntel\MigrationSnapshot\ServiceProvider"
+php artisan vendor:publish --provider="\AlwaysOpen\MigrationSnapshot\ServiceProvider"
 ```
 
 ## Usage
@@ -61,14 +61,11 @@ composer test
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-## Security
-
-If you discover any security related issues, please email
-opensource@orisintel.com instead of using the issue tracker.
-
 ## Credits
 
 - [Paul R. Rogers](https://github.com/paulrrogers)
+- ORIS Intelligence
+- PriceSpider (NeuIntel)
 - [All Contributors](../../contributors)
 
 ## License
