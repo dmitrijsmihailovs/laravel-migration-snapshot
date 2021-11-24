@@ -32,6 +32,7 @@ jobs:
       run: |
         sudo /etc/init.d/mysql start
         mysql -e 'CREATE DATABASE forge;' --user=root --password=root
+        mysql -e "GRANT ALL PRIVILEGES ON forge.* TO 'forge'@'localhost' IDENTIFIED BY '';" --user=root --password=root
 
     - uses: actions/checkout@v2
 
