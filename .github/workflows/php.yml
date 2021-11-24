@@ -19,7 +19,7 @@ jobs:
         ports:
           - 3306:3306
       postgres:
-        image: postgers:latest
+        image: postgres:latest
         env:
           POSTGRES_PASSWORD: password
         ports:
