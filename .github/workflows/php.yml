@@ -12,23 +12,25 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      mysql:
-        image: mysql:latest
-        env:
-          MYSQL_DATABASE: forge
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_PASSWORD: password
-        ports:
-          - 3306:3306
       postgres:
         image: postgres:latest
         env:
           POSTGRES_DB: forge
-          POSTGRES_PASSWORD: password
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
         ports:
           - 5432:5432
 
     steps:
+    - name: Start bundled MySQL
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -e 'CREATE DATABASE forge;' --user=root --password=root
+
     - uses: actions/checkout@v2
 
     - name: Validate composer.json and composer.lock
