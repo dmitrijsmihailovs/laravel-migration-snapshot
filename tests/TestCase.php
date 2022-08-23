@@ -9,6 +9,7 @@ use AlwaysOpen\MigrationSnapshot\Commands\MigrateDumpCommand;
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     protected $dbDefault = 'mysql';
+    protected $dbPrefix = 'omp_';
     protected $schemaSqlDirectory;
     protected $schemaSqlPath;
 
@@ -34,6 +35,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('database.default', $this->dbDefault);
+        $oldDbConnConfig = $app['config']->get('database.connections.' . $this->dbDefault) ?? [];
+        $app['config']->set(
+            'database.connections.' . $this->dbDefault,
+            ['prefix' => $this->dbPrefix] + $oldDbConnConfig
+        );
     }
 
     protected function getPackageProviders($app)

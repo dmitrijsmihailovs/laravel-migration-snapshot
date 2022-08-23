@@ -26,12 +26,12 @@ class MigrateLoadTest extends TestCase
 
         $this->assertEquals(0, \DB::table('test_ms')->count());
 
-        $table_name = \DB::table('information_schema.tables')
+        $table_name = \DB::table(\DB::raw('information_schema.tables'))
             ->where('table_schema', \DB::getDatabaseName())
-            ->whereNotIn('table_name', ['migrations'])
+            ->whereNotIn('table_name', ["{$this->dbPrefix}migrations"])
             ->value('table_name');
 
-        $this->assertEquals('test_ms', $table_name);
+        $this->assertEquals("{$this->dbPrefix}test_ms", $table_name);
     }
 
     // TODO: Test no-drop and prompt-when-production.

@@ -164,7 +164,7 @@ final class MigrateDumpCommand extends Command
         // Include migration rows to avoid unnecessary reruns conflicting.
         exec(
             static::mysqlCommandPrefix($db_config)
-                . ' migrations'
+                . ' ' . ($db_config['prefix'] ?? '') . 'migrations'
                 . ' --no-create-info'
                 . ' --skip-extended-insert'
                 . ' --skip-routines'
@@ -203,7 +203,7 @@ final class MigrateDumpCommand extends Command
             static::mysqlCommandPrefix($db_config)
             . ' --result-file=' . escapeshellarg($data_sql_path)
             . ' --no-create-info --skip-routines --skip-triggers'
-            . ' --ignore-table=' . escapeshellarg($db_config['database'] . '.migrations')
+            . ' --ignore-table=' . escapeshellarg($db_config['database'] . '.' . ($db_config['prefix'] ?? '') . 'migrations')
             . ' --single-transaction', // Avoid disruptive locks.
             $exit_code
         );
@@ -319,7 +319,9 @@ final class MigrateDumpCommand extends Command
 
         // Include migration rows to avoid unnecessary reruns conflicting.
         exec(
-            static::pgsqlCommandPrefix($db_config) . ' --table=migrations --data-only --inserts',
+            static::pgsqlCommandPrefix($db_config)
+            . ' --table=' . escapeshellarg(($db_config['prefix'] ?? '') . 'migrations')
+            . ' --data-only --inserts',
             $output,
             $exit_code
         );
@@ -359,7 +361,7 @@ final class MigrateDumpCommand extends Command
         passthru(
             static::pgsqlCommandPrefix($db_config)
             . ' --file=' . escapeshellarg($data_sql_path)
-            . ' --exclude-table=' . escapeshellarg($db_config['database'] . '.migrations')
+            . ' --exclude-table=' . escapeshellarg($db_config['database'] . '.' . ($db_config['prefix'] ?? '') . 'migrations')
             . ' --data-only',
             $exit_code
         );
@@ -410,9 +412,10 @@ final class MigrateDumpCommand extends Command
 
         file_put_contents($schema_sql_path, '');
 
+        $migrationsTable = ($db_config['prefix'] ?? '') . 'migrations';
         foreach ($tables as $table) {
             // Only migrations should dump data with schema.
-            $sql_command = 'migrations' === $table ? '.dump' : '.schema';
+            $sql_command = $migrationsTable === $table ? '.dump' : '.schema';
 
             $output = [];
             exec(
@@ -425,7 +428,7 @@ final class MigrateDumpCommand extends Command
                 return $exit_code;
             }
 
-            if ('migrations' === $table) {
+            if ($migrationsTable === $table) {
                 $insert_rows = array_slice($output, 4, -1);
                 $sorted = self::reorderMigrationRows($insert_rows);
                 array_splice($output, 4, -1, $sorted);
@@ -463,9 +466,10 @@ final class MigrateDumpCommand extends Command
 
         $tables = preg_split('/\s+/', implode(' ', $output));
 
+        $migrationsTable = ($db_config['prefix'] ?? '') . 'migrations';
         foreach ($tables as $table) {
             // We don't want to dump the migrations table here
-            if ('migrations' === $table) {
+            if ($migrationsTable === $table) {
                 continue;
             }
 
