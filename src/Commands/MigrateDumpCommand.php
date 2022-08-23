@@ -78,9 +78,8 @@ final class MigrateDumpCommand extends Command
 
                 exit($exit_code);
             }
+            $this->info('Dumped Data');
         }
-
-        $this->info('Dumped Data');
 
         $after_dump = config('migration-snapshot.after-dump');
         if ($after_dump) {
@@ -321,7 +320,8 @@ final class MigrateDumpCommand extends Command
         exec(
             static::pgsqlCommandPrefix($db_config)
             . ' --table=' . escapeshellarg(($db_config['prefix'] ?? '') . 'migrations')
-            . ' --data-only --inserts',
+            . ' --data-only'
+            . ' --inserts',
             $output,
             $exit_code
         );

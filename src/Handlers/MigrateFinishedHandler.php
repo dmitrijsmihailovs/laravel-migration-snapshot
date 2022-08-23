@@ -17,7 +17,8 @@ class MigrateFinishedHandler
             && env('MIGRATION_SNAPSHOT', true)
             && in_array(app()->environment(), explode(',', config('migration-snapshot.environments')), true)
         ) {
-            $options = MigrateStartingHandler::inputToArtisanOptions($event->input);
+            $options = MigrateStartingHandler::inputToArtisanOptions($event->input)
+                + ['--include-data' => config('migration-snapshot.data') ?? false];
             $database = $options['--database'] ?? env('DB_CONNECTION');
             $db_driver = \DB::connection($database)->getDriverName();
             if (! in_array($db_driver, MigrateDumpCommand::SUPPORTED_DB_DRIVERS, true)) {
