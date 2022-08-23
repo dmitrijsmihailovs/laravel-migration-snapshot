@@ -241,7 +241,7 @@ final class MigrateDumpCommand extends Command
         return 'mysqldump --skip-add-drop-table'
             . ' --skip-add-locks --skip-comments --skip-set-charset --tz-utc --set-gtid-purged=OFF'
             . ' --host=' . escapeshellarg($db_config['host'])
-            . ' --port=' . escapeshellarg($db_config['port'])
+            . ' --port=' . escapeshellarg($db_config['port'] ?? 3306)
             . ' --user=' . escapeshellarg($db_config['username'])
             . ' --password=' . escapeshellarg($db_config['password'])
             . ' ' . escapeshellarg($db_config['database']);
@@ -382,7 +382,7 @@ final class MigrateDumpCommand extends Command
         return 'PGPASSWORD=' . escapeshellarg($db_config['password'])
             . ' pg_dump'
             . ' --host=' . escapeshellarg($db_config['host'])
-            . ' --port=' . escapeshellarg($db_config['port'])
+            . ' --port=' . escapeshellarg($db_config['port'] ?? 5432)
             . ' --username=' . escapeshellarg($db_config['username'])
             . ' ' . escapeshellarg($db_config['database']);
     }
