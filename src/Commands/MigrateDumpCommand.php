@@ -101,7 +101,7 @@ final class MigrateDumpCommand extends Command
                 // Extract parts of "INSERT ... VALUES ([id],'[ver]',[batch])
                 // where version begins with "YYYY_MM_DD_HHMMSS".
                 $occurrences = preg_match(
-                    "/^(.*?VALUES\s*)\([0-9]+,\s*'([0-9_]{17})(.*?),\s*[0-9]+\s*\)\s*;\s*$/iu",
+                    "/^(.*?VALUES\s*)\([0-9]+,\s*'([0-9_]{17}[^'\",]*)(.*?),\s*[0-9]+\s*\)\s*;\s*$/iu",
                     $line,
                     $m
                 );
@@ -110,8 +110,7 @@ final class MigrateDumpCommand extends Command
                         'Only insert rows supported:' . PHP_EOL . var_export($line, 1)
                     );
                 }
-                // Reassemble parts with new values and index by timestamp of
-                // version string to sort.
+                // Reassemble parts with new values and index by migration to sort.
                 $reordered[$m[2]] = "$m[1](/*NEWID*/,'$m[2]$m[3],0);";
             }
             ksort($reordered);
