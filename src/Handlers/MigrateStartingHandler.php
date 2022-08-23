@@ -66,7 +66,7 @@ class MigrateStartingHandler
             // inconsistent output.
             $options = self::inputToArtisanOptions($event->input);
             $database = $options['--database'] ?? \DB::getConfig('name');
-            $db_driver = \DB::getDriverName();
+            $db_driver = \DB::connection($database)->getDriverName();
             if (! in_array($db_driver, MigrateDumpCommand::SUPPORTED_DB_DRIVERS, true)) {
                 // CONSIDER: Logging or emitting console warning.
                 return;
@@ -78,7 +78,7 @@ class MigrateStartingHandler
             // Try-catch instead of information_schema since not all have one.
             try {
                 $has_migrated_any = ! is_null(
-                    \DB::table('migrations')->value('id')
+                    \DB::connection($database)->table('migrations')->value('id')
                 );
             } catch (\PDOException $e) {
                 // No op. when table does not exist.
