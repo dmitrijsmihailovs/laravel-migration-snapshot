@@ -16,11 +16,11 @@ class MigrateDumpTest extends TestCase
         $this->assertDirectoryExists($this->schemaSqlDirectory);
         $this->assertFileExists($this->schemaSqlPath);
         $result_sql = file_get_contents($this->schemaSqlPath);
-        $this->assertStringContainsString('CREATE TABLE `test_ms`', $result_sql);
-        $this->assertStringContainsString('INSERT INTO `migrations`', $result_sql);
+        $this->assertMatchesRegularExpression("/CREATE TABLE [\`\"]{$this->dbPrefix}test_ms[\`\"]/", $result_sql);
+        $this->assertMatchesRegularExpression("/INSERT INTO [\`\"]{$this->dbPrefix}migrations[\`\"]/", $result_sql);
         $this->assertStringNotContainsString(' AUTO_INCREMENT=', $result_sql);
         $last_character = mb_substr($result_sql, -1);
-        $this->assertRegExp("/[\r\n]\z/mu", $last_character);
+        $this->assertMatchesRegularExpression("/[\r\n]\z/mu", $last_character);
     }
 
     public function test_trimUnderscoresFromForeign()
@@ -50,17 +50,17 @@ class MigrateDumpTest extends TestCase
     public function test_reorderMigrationRows()
     {
         $output = [
-            "INSERT INTO migrations VALUES (1,'0001_01_01_000001_one',1);",
-            "INSERT INTO migrations VALUES (2,'0001_01_01_000003_three',2);",
-            "INSERT INTO migrations VALUES (3,'0001_01_01_000002_two',3);",
+            "INSERT INTO {$this->dbPrefix}migrations VALUES (1,'0001_01_01_000001_one',1);",
+            "INSERT INTO {$this->dbPrefix}migrations VALUES (2,'0001_01_01_000003_three',2);",
+            "INSERT INTO {$this->dbPrefix}migrations VALUES (3,'0001_01_01_000002_two',3);",
         ];
         $reordered = array_values(
             MigrateDumpCommand::reorderMigrationRows($output)
         );
         $this->assertEquals([
-            "INSERT INTO migrations VALUES (1,'0001_01_01_000001_one',0);",
-            "INSERT INTO migrations VALUES (2,'0001_01_01_000002_two',0);",
-            "INSERT INTO migrations VALUES (3,'0001_01_01_000003_three',0);",
+            "INSERT INTO {$this->dbPrefix}migrations VALUES (1,'0001_01_01_000001_one',0);",
+            "INSERT INTO {$this->dbPrefix}migrations VALUES (2,'0001_01_01_000002_two',0);",
+            "INSERT INTO {$this->dbPrefix}migrations VALUES (3,'0001_01_01_000003_three',0);",
         ], $reordered);
     }
 }
