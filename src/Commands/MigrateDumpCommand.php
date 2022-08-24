@@ -360,6 +360,7 @@ final class MigrateDumpCommand extends Command
         passthru(
             static::pgsqlCommandPrefix($db_config)
             . ' --file=' . escapeshellarg($data_sql_path)
+            . ' --format=c' // Needed to workaround dumping data separately.
             . ' --exclude-table=' . escapeshellarg($db_config['database'] . '.' . ($db_config['prefix'] ?? '') . 'migrations')
             . ' --data-only',
             $exit_code
