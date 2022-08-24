@@ -319,9 +319,11 @@ final class MigrateDumpCommand extends Command
         }
 
         // Include migration rows to avoid unnecessary reruns conflicting.
+        $migrationsTable = ltrim(($db_config['schema'] ?? '') . '.', '.')
+            . ($db_config['prefix'] ?? '') . 'migrations';
         exec(
             static::pgsqlCommandPrefix($db_config)
-            . ' --table=' . escapeshellarg(($db_config['prefix'] ?? '') . 'migrations')
+            . ' --table=' . escapeshellarg($migrationsTable)
             . ' --data-only'
             . ' --inserts',
             $output,
@@ -360,11 +362,13 @@ final class MigrateDumpCommand extends Command
      */
     private static function pgsqlDataDump(array $db_config, string $data_sql_path) : int
     {
+        $migrationsTable = ltrim(($db_config['schema'] ?? '') . '.', '.')
+            . ($db_config['prefix'] ?? '') . 'migrations';
         passthru(
             static::pgsqlCommandPrefix($db_config)
             . ' --file=' . escapeshellarg($data_sql_path)
             . ' --format=c' // Needed to workaround dumping data separately.
-            . ' --exclude-table=' . escapeshellarg($db_config['database'] . '.' . ($db_config['prefix'] ?? '') . 'migrations')
+            . ' --exclude-table=' . escapeshellarg($migrationsTable)
             . ' --data-only',
             $exit_code
         );
