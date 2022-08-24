@@ -9,6 +9,10 @@ of the database schema and migrations, similar in spirit to Rails' `schema.rb`.
 
 Works with the `mysql`, `pgsql`, and `sqlite` database drivers.
 
+Laravel 8+ has `schema:dump` which serves a similar purpose. This package may
+still be preferred if one wants the dumping to be automatic after each `migrate`
+invocation, old migrations to remain in place, or to also dump data.
+
 ## Installation
 
 You can install the package via composer:
