@@ -105,7 +105,7 @@ final class MigrateLoadCommand extends Command
         $command = 'cat ' . escapeshellarg($path)
             . ' | mysql --no-beep'
             . ' --host=' . escapeshellarg($db_config['host'])
-            . ' --port=' . escapeshellarg($db_config['port'])
+            . ' --port=' . escapeshellarg($db_config['port'] ?? 3306)
             . ' --user=' . escapeshellarg($db_config['username'])
             . ' --password=' . escapeshellarg($db_config['password'])
             . ' --database=' . escapeshellarg($db_config['database']);
@@ -150,7 +150,7 @@ final class MigrateLoadCommand extends Command
         $command = 'PGPASSWORD=' . escapeshellarg($db_config['password'])
             . ' psql --file=' . escapeshellarg($path)
             . ' --host=' . escapeshellarg($db_config['host'])
-            . ' --port=' . escapeshellarg($db_config['port'])
+            . ' --port=' . escapeshellarg($db_config['port'] ?? 5432)
             . ' --username=' . escapeshellarg($db_config['username'])
             . ' --dbname=' . escapeshellarg($db_config['database']);
         switch($verbosity) {
