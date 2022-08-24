@@ -62,18 +62,21 @@ final class MigrateDumpCommand extends Command
 
         $this->info('Dumped schema');
 
-        $data_sql_path = null;
+        $data_path = null;
         if ($this->option('include-data')) {
             $this->info('Starting Data Dump');
 
-            $data_sql_path = database_path() . self::DATA_SQL_PATH_SUFFIX;
+            $data_path = database_path() . self::DATA_SQL_PATH_SUFFIX;
+            if ('pgsql' === $db_config['driver']) {
+                $data_path = preg_replace('/\.sql$/', '.pgdump', $data_path);
+            }
 
             $method = $db_config['driver'] . 'DataDump';
-            $exit_code = self::{$method}($db_config, $data_sql_path);
+            $exit_code = self::{$method}($db_config, $data_path);
 
             if (0 !== $exit_code) {
-                if (file_exists($data_sql_path)) {
-                    unlink($data_sql_path);
+                if (file_exists($data_path)) {
+                    unlink($data_path);
                 }
 
                 exit($exit_code);
@@ -83,7 +86,7 @@ final class MigrateDumpCommand extends Command
 
         $after_dump = config('migration-snapshot.after-dump');
         if ($after_dump) {
-            $after_dump($schema_sql_path, $data_sql_path);
+            $after_dump($schema_sql_path, $data_path);
             $this->info('Ran After-dump');
         }
     }
@@ -360,6 +363,7 @@ final class MigrateDumpCommand extends Command
         passthru(
             static::pgsqlCommandPrefix($db_config)
             . ' --file=' . escapeshellarg($data_sql_path)
+            . ' --format=c' // Needed to workaround dumping data separately.
             . ' --exclude-table=' . escapeshellarg($db_config['database'] . '.' . ($db_config['prefix'] ?? '') . 'migrations')
             . ' --data-only',
             $exit_code
