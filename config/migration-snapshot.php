@@ -70,4 +70,17 @@ return [
     |
     */
     'after-dump' => null,
+
+    /*
+    |--------------------------------------------------------------------------
+    | After Load
+    |--------------------------------------------------------------------------
+    |
+    | Run this closure after loading snapshot. Helps when one needs to refresh
+    | materialized views or otherwise prep a fresh DB.
+    |
+    | Must accept two arguments: `function ($schema_sql_path, $data_sql_path)`.
+    |
+    */
+    'after-load' => null,
 ];
