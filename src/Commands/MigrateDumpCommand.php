@@ -3,6 +3,7 @@
 namespace AlwaysOpen\MigrationSnapshot\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 final class MigrateDumpCommand extends Command
@@ -84,9 +85,14 @@ final class MigrateDumpCommand extends Command
             $this->info('Dumped Data');
         }
 
-        $after_dump = config('migration-snapshot.after-dump');
-        if ($after_dump) {
-            $after_dump($schema_sql_path, $data_path);
+        if ($after_dump = config('migration-snapshot.after-dump')) {
+            if (is_string($after_dump)) {
+                Artisan::call($after_dump);
+            } elseif (is_array($after_dump)) {
+                Artisan::call($after_dump[0], $after_dump[1] ?? [], $after_dump[2] ?? null);
+            } else {
+                $after_dump($schema_sql_path, $data_path);
+            }
             $this->info('Ran After-dump');
         }
     }

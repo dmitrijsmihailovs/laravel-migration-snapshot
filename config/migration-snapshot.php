@@ -80,11 +80,12 @@ return [
     | After Dump
     |--------------------------------------------------------------------------
     |
-    | Run this closure after dumping snapshot. Helps when output may vary by
-    | environment in unimportant ways which would just pollute the SCM history
-    | with noisy changes.
+    | Run this Artisan command or closure after dumping snapshot. Helps when
+    | output may vary by environment in unimportant ways which would just
+    | pollute the SCM history with noisy changes.
     |
-    | Must accept two arguments: `function ($schema_sql_path, $data_sql_path)`.
+    | If an array values must align with arguments to `Artisan::call()`.
+    | If a closure it must be: `function ($schema_sql_path, $data_sql_path)`.
     |
     */
     'after-dump' => null,
@@ -94,10 +95,11 @@ return [
     | After Load
     |--------------------------------------------------------------------------
     |
-    | Run this closure after loading snapshot. Helps when one needs to refresh
-    | materialized views or otherwise prep a fresh DB.
+    | Run this Artisan command or closure after loading snapshot. Helps when
+    | one needs to refresh materialized views or otherwise prep a fresh DB.
     |
-    | Must accept two arguments: `function ($schema_sql_path, $data_sql_path)`.
+    | If an array values must align with arguments to `Artisan::call()`.
+    | If a closure it must be: `function ($schema_sql_path, $data_sql_path)`.
     |
     */
     'after-load' => null,
