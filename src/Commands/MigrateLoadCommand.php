@@ -29,8 +29,8 @@ final class MigrateLoadCommand extends Command
             return;
         }
 
-        $path = database_path() . MigrateDumpCommand::SCHEMA_SQL_PATH_SUFFIX;
-        if (! file_exists($path)) {
+        $schema_sql_path = database_path() . MigrateDumpCommand::SCHEMA_SQL_PATH_SUFFIX;
+        if (! file_exists($schema_sql_path)) {
             throw new InvalidArgumentException(
                 'Schema-migrations path not found, run `migrate:dump` first.'
             );
@@ -64,7 +64,7 @@ final class MigrateLoadCommand extends Command
         // CONSIDER: Accepting options for underlying restore utilities from CLI.
         // CONSIDER: Option to restore to console Stdout instead.
         $method = $db_config['driver'] . 'Load';
-        $exit_code = self::{$method}($path, $db_config, $this->getOutput()->getVerbosity());
+        $exit_code = self::{$method}($schema_sql_path, $db_config, $this->getOutput()->getVerbosity());
 
         if (0 !== $exit_code) {
             exit($exit_code); // CONSIDER: Returning instead.
@@ -86,6 +86,11 @@ final class MigrateLoadCommand extends Command
             }
 
             $this->info('Loaded default data successfully!');
+        }
+
+        if ($after_load = config('migration-snapshot.after-load')) {
+            $after_load($schema_sql_path, $data_path);
+            $this->info('Ran After-load');
         }
     }
 
