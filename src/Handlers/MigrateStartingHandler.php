@@ -55,7 +55,7 @@ class MigrateStartingHandler
             // Avoid knowingly starting migrate which will fail.
             && self::inputValidateWorkaround($event->input)
             && ! $event->input->hasParameterOption(['--help', '--pretend', '-V', '--version'])
-            && env('MIGRATION_SNAPSHOT', true) // CONSIDER: Config option.
+            && config('migration-snapshot.load', true)
             // Never implicitly load fresh (from file) in production since it
             // would need to drop first, and that would be destructive.
             && in_array(app()->environment(), explode(',', config('migration-snapshot.environments')), true)

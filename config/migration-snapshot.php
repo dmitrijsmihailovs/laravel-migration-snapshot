@@ -3,6 +3,24 @@
 return [
     /*
     |--------------------------------------------------------------------------
+    | Whether to automatically dump after running `migrate`.
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'dump' => env('MIGRATION_SNAPSHOT_DUMP', env('MIGRATION_SNAPSHOT', true)),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Whether to automatically load when running `migrate` into an empty DB.
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'load' => env('MIGRATION_SNAPSHOT_LOAD', env('MIGRATION_SNAPSHOT', true)),
+
+    /*
+    |--------------------------------------------------------------------------
     | Which environments to implicitly dump/load
     |--------------------------------------------------------------------------
     |

@@ -14,7 +14,7 @@ class MigrateFinishedHandler
             // CONSIDER: Also `migrate:fresh`.
             in_array($event->command, ['migrate', 'migrate:rollback'], true)
             && ! $event->input->hasParameterOption(['--help', '--pretend', '-V', '--version'])
-            && env('MIGRATION_SNAPSHOT', true)
+            && config('migration-snapshot.dump', true)
             && in_array(app()->environment(), explode(',', config('migration-snapshot.environments')), true)
         ) {
             $options = MigrateStartingHandler::inputToArtisanOptions($event->input)
