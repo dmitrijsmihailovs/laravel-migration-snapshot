@@ -3,6 +3,7 @@
 namespace AlwaysOpen\MigrationSnapshot\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
@@ -89,7 +90,13 @@ final class MigrateLoadCommand extends Command
         }
 
         if ($after_load = config('migration-snapshot.after-load')) {
-            $after_load($schema_sql_path, $data_path);
+            if (is_string($after_load)) {
+                Artisan::call($after_load);
+            } elseif (is_array($after_load)) {
+                Artisan::call($after_load[0], $after_load[1] ?? [], $after_load[2] ?? null);
+            } else {
+                $after_load($schema_sql_path, $data_path);
+            }
             $this->info('Ran After-load');
         }
     }
